@@ -166,7 +166,7 @@ export default function App() {
 
   return (
     <>
-      {showSplash && <Splash onDone={() => setShowSplash(false)} />}
+      {showSplash && <Splash onDone={() => { window.scrollTo(0, 0); setShowSplash(false) }} />}
 
       <Header active={active} />
 
