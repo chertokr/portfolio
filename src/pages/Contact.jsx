@@ -1,12 +1,13 @@
 import { CONFIG } from '../siteConfig'
+import { Mail, Linkedin, Github } from 'lucide-react'
 
 const links = [
   {
     label: 'Email',
     value: CONFIG.emailPrimary,
     href: `mailto:${CONFIG.emailPrimary}`,
-    color: '#2563eb',
-    icon: '✉',
+    color: '#4338ca',
+    Icon: Mail,
     desc: 'Best for professional inquiries',
   },
   {
@@ -14,7 +15,7 @@ const links = [
     value: 'linkedin.com/in/rachel-chertok',
     href: CONFIG.linkedin,
     color: '#0a66c2',
-    icon: '💼',
+    Icon: Linkedin,
     desc: 'Connect and follow my work',
   },
   {
@@ -22,7 +23,7 @@ const links = [
     value: 'github.com/chertokr',
     href: CONFIG.github,
     color: '#7c3aed',
-    icon: '⌨',
+    Icon: Github,
     desc: 'See my projects and code',
   },
 ]
@@ -36,50 +37,24 @@ export default function Contact() {
       </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {links.map((l) => (
+        {links.map(l => (
           <a
             key={l.label}
             href={l.href}
             target={l.href.startsWith('mailto') ? undefined : '_blank'}
             rel="noreferrer"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 16,
-              padding: '18px 20px',
-              borderRadius: 14,
-              border: `1px solid ${l.color}22`,
-              background: `linear-gradient(135deg, ${l.color}06, ${l.color}03)`,
-              textDecoration: 'none',
-              color: 'var(--text)',
-              transition: 'transform 220ms, box-shadow 220ms, border-color 220ms',
-              boxShadow: `0 2px 10px ${l.color}0a`,
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = 'translateY(-3px)'
-              e.currentTarget.style.boxShadow = `0 8px 24px ${l.color}18`
-              e.currentTarget.style.borderColor = `${l.color}44`
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = `0 2px 10px ${l.color}0a`
-              e.currentTarget.style.borderColor = `${l.color}22`
-            }}
+            className="contact-link"
+            style={{ '--link-color': l.color }}
           >
-            <span style={{
-              width: 44, height: 44,
-              borderRadius: 12,
-              background: `linear-gradient(135deg, ${l.color}18, ${l.color}0a)`,
-              border: `1px solid ${l.color}22`,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 20, flexShrink: 0,
-            }}>{l.icon}</span>
+            <span className="contact-icon" style={{ background: `${l.color}14`, border: `1px solid ${l.color}22` }}>
+              <l.Icon size={20} color={l.color} />
+            </span>
             <div style={{ flex: 1 }}>
-              <div style={{ fontWeight: 700, fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.07em', color: l.color, marginBottom: 2 }}>{l.label}</div>
+              <div className="ui-label" style={{ color: l.color, marginBottom: 2 }}>{l.label}</div>
               <div style={{ fontWeight: 600, fontSize: '0.97rem' }}>{l.value}</div>
-              <div style={{ color: 'var(--muted)', fontSize: '0.83rem', marginTop: 1 }}>{l.desc}</div>
+              <div className="meta">{l.desc}</div>
             </div>
-            <span style={{ color: l.color, fontSize: 18, opacity: 0.5 }}>→</span>
+            <span style={{ color: l.color, opacity: 0.4, fontSize: 18 }}>→</span>
           </a>
         ))}
       </div>

@@ -1,99 +1,192 @@
-import React, { useEffect, useState } from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
+import { useEffect, useState, useRef } from 'react'
+import { Mail, ArrowDown, Code2 } from 'lucide-react'
 import { CONFIG, getDrivePreview } from './siteConfig'
 import About from './pages/About'
 import Experience from './pages/Experience'
 import Projects from './pages/Projects'
-import CaseStudies from './pages/CaseStudies'
 import ResumePage from './pages/ResumePage'
 import Contact from './pages/Contact'
 import Splash from './components/Splash'
 
-function Header() {
-  // removed theme toggle per user request
+const NAV = [
+  { id: 'about',      label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects',   label: 'Projects' },
+  { id: 'resume',     label: 'Resume' },
+  { id: 'contact',    label: 'Contact' },
+]
 
+function scrollTo(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
+function Header({ active }) {
   return (
     <header className="site-header">
       <div className="header-inner">
-        <div className="header-left">
-          <img className="headshot" alt="Rachel Chertok" src={CONFIG.headshot} onError={(e)=>{e.target.style.display='none'}} />
-          <div>
-            <h1 className="name">Rachel Chertok</h1>
-            <p className="tagline">Third Year Computer Science and Business Administration Student</p>
-          </div>
-        </div>
+        <button className="header-name-btn" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          Rachel Chertok
+        </button>
+
         <nav className="top-nav">
-          <Link to="/about">About</Link>
-          <Link to="/experience">Experience</Link>
-          <Link to="/projects">Projects</Link>
-          <Link to="/resume">Resume</Link>
-          <Link to="/contact">Contact</Link>
+          {NAV.map(s => (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              className={active === s.id ? 'active' : ''}
+              onClick={e => { e.preventDefault(); scrollTo(s.id) }}
+            >
+              {s.label}
+            </a>
+          ))}
         </nav>
-        <div style={{display:'flex',alignItems:'center',gap:12}}>
-          <div className="socials">
-            <a href={CONFIG.github} target="_blank" rel="noreferrer"><img src="/icons/github.svg" className="icon" alt="GitHub"/></a>
-            <a href={CONFIG.linkedin} target="_blank" rel="noreferrer"><img src="/icons/linkedin.svg" className="icon" alt="LinkedIn"/></a>
-          </div>
+
+        <div className="socials">
+          <a href={CONFIG.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+            <Code2 size={18} />
+          </a>
+          <a href={CONFIG.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <img src="/icons/linkedin.svg" width={18} height={18} alt="LinkedIn" className="icon" />
+          </a>
         </div>
       </div>
     </header>
   )
 }
 
-export default function App(){
-  const [showSplash, setShowSplash] = useState(true)
+function Hero() {
+  return (
+    <div className="hero">
+      <img
+        className="hero-photo"
+        src={CONFIG.headshot}
+        alt="Rachel Chertok"
+        onError={e => { e.target.style.display = 'none' }}
+      />
+      <div className="hero-text">
+        <p className="hero-label">Product Manager · Builder · Problem Solver</p>
+        <h1 className="hero-name">Rachel Chertok</h1>
+        <p className="hero-bio">
+          CS &amp; Business @ Northeastern · May 2027 · Boston, MA
+          <br />
+          Incoming PM Intern @ Red Hat
+        </p>
+        <div className="hero-links">
+          <a href={CONFIG.linkedin} target="_blank" rel="noreferrer" className="hero-link">
+            <img src="/icons/linkedin.svg" width={15} height={15} alt="" style={{ filter: 'brightness(0) invert(1)' }} /> LinkedIn
+          </a>
+          <a href={CONFIG.github} target="_blank" rel="noreferrer" className="hero-link">
+            <Code2 size={15} /> GitHub
+          </a>
+          <a href={`mailto:${CONFIG.emailPrimary}`} className="hero-link">
+            <Mail size={15} /> Email
+          </a>
+        </div>
+      </div>
+      <button
+        className="hero-scroll-hint"
+        onClick={() => scrollTo('about')}
+        aria-label="Scroll to About"
+      >
+        <span>scroll to explore</span>
+        <ArrowDown size={14} />
+      </button>
+    </div>
+  )
+}
 
+export default function App() {
+  const [showSplash, setShowSplash] = useState(true)
+  const [active, setActive]         = useState('about')
+  const progressRef                 = useRef(null)
+
+  // Reading progress bar
   useEffect(() => {
+    const bar = progressRef.current
+    if (!bar) return
+    const onScroll = () => {
+      const doc    = document.documentElement
+      const total  = doc.scrollHeight - doc.clientHeight
+      const pct    = total > 0 ? (window.scrollY / total) * 100 : 0
+      bar.style.width = `${pct}%`
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Active section via IntersectionObserver
+  useEffect(() => {
+    if (showSplash) return
+    const obs = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActive(entry.target.id)
+        })
+      },
+      { rootMargin: '-10% 0px -80% 0px', threshold: 0 }
+    )
+    NAV.forEach(s => {
+      const el = document.getElementById(s.id)
+      if (el) obs.observe(el)
+    })
+    return () => obs.disconnect()
+  }, [showSplash])
+
+  // Reveal animations
+  useEffect(() => {
+    if (showSplash) return
     const obs = new IntersectionObserver(
       (entries, observer) => {
-        entries.forEach((entry) => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('reveal-visible')
             observer.unobserve(entry.target)
           }
         })
       },
-      { threshold: 0.12 }
+      { threshold: 0.08 }
     )
-
-    document.querySelectorAll('section, .card, .site-header').forEach((el) => {
+    document.querySelectorAll('section, .card').forEach(el => {
       el.classList.add('reveal')
       obs.observe(el)
     })
-
     return () => obs.disconnect()
-  }, [])
+  }, [showSplash])
 
-  // shrink header on scroll
+  // Shrink header on scroll
   useEffect(() => {
     const header = document.querySelector('.site-header')
     if (!header) return
-    const onScroll = () => {
-      if (window.scrollY > 72) header.classList.add('scrolled')
-      else header.classList.remove('scrolled')
-    }
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 72)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   const embed = getDrivePreview(CONFIG.resumeEmbedUrl) || '/resume.pdf'
+
   return (
     <>
       {showSplash && <Splash onDone={() => setShowSplash(false)} />}
-      <Header />
+
+      <Header active={active} />
+
+      {/* reading progress bar — sits just below header */}
+      <div className="progress-track">
+        <div className="progress-fill" ref={progressRef} />
+      </div>
+
       <div className="container large">
         <main>
-        <Routes>
-          <Route path="/" element={<About/>} />
-          <Route path="/about" element={<About/>} />
-          <Route path="/experience" element={<Experience/>} />
-          <Route path="/projects" element={<Projects/>} />
-          <Route path="/case-studies" element={<CaseStudies/>} />
-          <Route path="/resume" element={<ResumePage embedUrl={embed} />} />
-          <Route path="/contact" element={<Contact/>} />
-        </Routes>
+          <Hero />
+          <div id="about"      className="section-anchor"><About /></div>
+          <div id="experience" className="section-anchor"><Experience /></div>
+          <div id="projects"   className="section-anchor"><Projects /></div>
+          <div id="resume"     className="section-anchor"><ResumePage embedUrl={embed} /></div>
+          <div id="contact"    className="section-anchor"><Contact /></div>
         </main>
-        <footer className="site-footer">© {new Date().getFullYear()} Rachel Chertok — Product Manager Candidate</footer>
+        <footer className="site-footer">
+          © {new Date().getFullYear()} Rachel Chertok — Product Manager Candidate
+        </footer>
       </div>
     </>
   )

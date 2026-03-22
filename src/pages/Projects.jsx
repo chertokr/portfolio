@@ -1,4 +1,5 @@
 import Expandable from '../components/Expandable'
+import { ExternalLink } from 'lucide-react'
 
 const salesMailerSections = [
   { label: 'Problem',  content: 'Sales reps spent hours drafting personalized outreach templates and tracking sends manually.' },
@@ -84,6 +85,16 @@ export default function Projects() {
           subtitle="React · Gmail API · Product design"
         >
           <SectionList sections={salesMailerSections} />
+          <div style={{ marginTop: 14 }}>
+            <a
+              href="https://github.com/chertokr/sales-mailer"
+              target="_blank"
+              rel="noreferrer"
+              className="project-link"
+            >
+              <ExternalLink size={13} /> View on GitHub
+            </a>
+          </div>
         </Expandable>
 
         {caseStudies.map((c) => (
