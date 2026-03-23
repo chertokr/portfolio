@@ -79,7 +79,7 @@ export default function Splash({ onDone }) {
           width: '320px',
         }}>
           <div className="splash-hi">Hi! <span className="splash-wave">👋</span> I'm Rachel.</div>
-          <div className="splash-sub">Aspiring Product Manager · Builder · Problem Solver</div>
+          <div className="splash-sub">Aspiring Product Manager · Leader · Problem Solver</div>
         </div>
       </div>
       <div className="splash-cta">Click anywhere to continue</div>

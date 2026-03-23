@@ -31,9 +31,8 @@ export default function About() {
       {/* Bio */}
       <p className="body-text" style={{ marginBottom: 28 }}>
         Focused on product management at the intersection of data and user experience,
-        I've shipped real product work at Bevi — driving $300K in projected revenue through
-        a zero-cost rebrand, building an accessibility program, and using Snowflake and Looker
-        to turn 2M+ machine events into actionable insights.
+        I've shipped real product work at Bevi, driving $300K in projected revenue through
+        a zero-cost rebrand, led a 100+ member web development student organization as President, and used data to optimize operations at both experiences.
       </p>
 
       {/* Education */}

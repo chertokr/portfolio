@@ -2,9 +2,9 @@ import Expandable from '../components/Expandable'
 import { ExternalLink } from 'lucide-react'
 
 const salesMailerSections = [
-  { label: 'Problem',  content: 'Sales reps spent hours drafting personalized outreach templates and tracking sends manually.' },
-  { label: 'Insight',  content: 'Automating template creation and send workflows would save time and increase consistent follow-ups.' },
-  { label: 'Solution', content: 'Built a React app integrating the Gmail API to create, send, and track templated outreach with reusable components.' },
+  { label: 'Problem',  content: 'Based on user research of Account Executives, sales reps spent hours drafting personalized pricing templates and tracking sends manually.' },
+  { label: 'Insight',  content: 'Automating template creation and send workflows would save time, increase consistent follow-ups, and reduce time on administrative tasks.' },
+  { label: 'Solution', content: 'Built a React app integrating the Gmail API to create, send, and track templated pricing emails with reusable components.' },
   { label: 'Impact',   content: 'Reduced drafting time by ~60% per rep; estimated ~2.4 hours saved per rep per day in pilot.' },
 ]
 
@@ -19,7 +19,7 @@ const caseStudies = [
     sections: [
       { label: 'Problem',  content: "A flavor was chronically underperforming despite tasting well in blind tests, with user research pointing to a perception mismatch between the name and customer expectations." },
       { label: 'Insight',  content: 'Usage data and qualitative interviews confirmed the name, not the formula, was the barrier, with competitor analysis showing simpler flavor names consistently outperform descriptive ones in this category.' },
-      { label: 'Solution', content: 'Led a zero-cost software rename from Key Lime to Lime across all machines, coordinating with engineering and marketing to deploy the update with no reformulation required.' },
+      { label: 'Solution', content: 'Led a zero-cost software rename from Key Lime to Lime across all machines, coordinating with engineering, marketing, and sales to deploy the update with no reformulation required.' },
       { label: 'Impact',   content: 'The finance team projected $300K in incremental revenue in the following year based on usage trends unlocked by the rename.' },
     ],
     skills: ['User Research', 'Data Analysis', 'Cross-functional Execution', 'Revenue Strategy'],
@@ -34,7 +34,7 @@ const caseStudies = [
     sections: [
       { label: 'Problem',  content: 'Low-performing beverage SKUs were occupying machine slots across partner accounts, reducing concentrate consumption and limiting revenue potential.' },
       { label: 'Insight',  content: 'Usage data in Snowflake revealed clear patterns of underperformance by SKU and site, and that swapping to high-usage replacements could meaningfully lift consumption with minimal operational cost.' },
-      { label: 'Solution', content: 'Developed and deployed an AI-powered SKU optimization algorithm using Python, Snowflake, and Looker within Hex notebooks to identify low-performing SKUs and recommend high-usage replacements. Piloted a flavor voting program across 110 sites with one partner to collect quantitative and qualitative feedback.' },
+      { label: 'Solution', content: 'Used an AI-powered SKU optimization algorithm using Python, Snowflake, and Looker within Hex notebooks to identify low-performing SKUs and recommend high-usage replacements. Piloted a flavor voting program across 110 sites with one partner to collect quantitative and qualitative feedback.' },
       { label: 'Impact',   content: 'Increased concentrate consumption by 30% across strategic partner accounts. Pilot data validated the algorithm and informed a broader rollout strategy.' },
     ],
     skills: ['Python', 'Snowflake', 'Looker', 'Hex', 'Data Analysis', 'Algorithm Design', 'Pilot Programs'],
