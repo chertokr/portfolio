@@ -1,67 +1,52 @@
 import Expandable from '../components/Expandable'
 import { ExternalLink } from 'lucide-react'
 
-const salesMailerSections = [
-  { label: 'Problem',  content: 'Based on user research of Account Executives, sales reps spent hours drafting personalized pricing templates and tracking sends manually.' },
-  { label: 'Insight',  content: 'Automating template creation and send workflows would save time, increase consistent follow-ups, and reduce time on administrative tasks.' },
-  { label: 'Solution', content: 'Built a React app integrating the Gmail API to create, send, and track templated pricing emails with reusable components.' },
-  { label: 'Impact',   content: 'Reduced drafting time by ~60% per rep; estimated ~2.4 hours saved per rep per day in pilot.' },
-]
-
-const caseStudies = [
+const projects = [
   {
-    tag: 'Revenue Growth',
-    tagColor: '#22c55e',
-    title: 'A Name Change That Generated $300K',
-    subtitle: 'Key Lime to Lime Rebranding · Bevi · PM',
-    heroMetric: '$300K',
-    heroLabel: 'Projected Revenue (Finance Team)',
+    tag: 'Product Strategy',
+    title: 'A Decision Dashboard for RHEL in Cloud',
+    subtitle: 'Red Hat · RHEL Cloud Pod · PM',
     sections: [
-      { label: 'Problem',  content: "A flavor was chronically underperforming despite tasting well in blind tests, with user research pointing to a perception mismatch between the name and customer expectations." },
-      { label: 'Insight',  content: 'Usage data and qualitative interviews confirmed the name, not the formula, was the barrier, with competitor analysis showing simpler flavor names consistently outperform descriptive ones in this category.' },
-      { label: 'Solution', content: 'Led a zero-cost software rename from Key Lime to Lime across all machines, coordinating with engineering, marketing, and sales to deploy the update with no reformulation required.' },
-      { label: 'Impact',   content: 'The finance team projected $300K in incremental revenue in the following year based on usage trends unlocked by the rename.' },
+      { label: 'Problem',  content: 'The RHEL Cloud Pod’s key metrics were trapped across Tableau, Jira, Salesforce, and manual spreadsheets, so go-to-market decisions were slow, low-confidence, and backward-looking.' },
+      { label: 'Insight',  content: 'The data needed for full visibility already lived in Red Hat’s own RHUI update logs, and a single standardized access point could cut time-to-insight from days to seconds.' },
+      { label: 'Solution', content: 'Designed a two-lens dashboard: a Cloud Admin view (QTD financials, escalations, and pipeline per hyperscaler) and an LOB Leader view (market trends mapped to the roadmap). Built as a static web app refreshed weekly via Python and GitLab CI, running locally inside the VPN at zero hosting cost.' },
+      { label: 'Impact',   content: 'Replaces engineering-dependent, retrospective reporting with self-serve, real-time visibility PMs can use to validate hypotheses and track growth targets.' },
     ],
-    skills: ['User Research', 'Data Analysis', 'Cross-functional Execution', 'Revenue Strategy'],
+    skills: ['Product Strategy', 'Data Aggregation', 'Python', 'Chart.js', 'User Research', 'Roadmap Planning'],
   },
   {
     tag: 'SKU Optimization',
-    tagColor: '#3b82f6',
     title: 'Flavor Swaps & Voting',
-    subtitle: 'SKU Optimization · Bevi · PM · July – August 2025',
-    heroMetric: '+30%',
-    heroLabel: 'Concentrate Consumption',
+    subtitle: 'Bevi · Data-driven SKU strategy',
     sections: [
-      { label: 'Problem',  content: 'Low-performing beverage SKUs were occupying machine slots across partner accounts, reducing concentrate consumption and limiting revenue potential.' },
-      { label: 'Insight',  content: 'Usage data in Snowflake revealed clear patterns of underperformance by SKU and site, and that swapping to high-usage replacements could meaningfully lift consumption with minimal operational cost.' },
-      { label: 'Solution', content: 'Used an AI-powered SKU optimization algorithm using Python, Snowflake, and Looker within Hex notebooks to identify low-performing SKUs and recommend high-usage replacements. Piloted a flavor voting program across 110 sites with one partner to collect quantitative and qualitative feedback.' },
-      { label: 'Impact',   content: 'Increased concentrate consumption by 30% across strategic partner accounts. Pilot data validated the algorithm and informed a broader rollout strategy.' },
+      { label: 'Problem',  content: 'Low-performing SKUs occupied machine slots across partner accounts, capping concentrate consumption and revenue.' },
+      { label: 'Insight',  content: 'Usage data in Snowflake showed exactly which SKUs to swap for high-usage replacements at minimal operational cost.' },
+      { label: 'Solution', content: 'Built an AI-powered SKU optimization model in Python, Snowflake, and Looker within Hex, and piloted a flavor-voting program with a partner across 110 sites.' },
+      { label: 'Impact',   content: 'Increased concentrate consumption by 30% across strategic partner accounts and validated a broader rollout.' },
     ],
-    skills: ['Python', 'Snowflake', 'Looker', 'Hex', 'Data Analysis', 'Algorithm Design', 'Pilot Programs'],
+    skills: ['Python', 'Snowflake', 'Looker', 'Hex', 'Data Analysis', 'Pilot Programs'],
   },
   {
-    tag: 'Product Strategy',
-    tagColor: '#f59e0b',
-    title: 'Rethinking a Struggling Flavor Portfolio',
-    subtitle: 'SKU Discontinuation Strategy · Bevi · PM',
-    heroMetric: '4',
-    heroLabel: 'Strategic Paths Evaluated',
+    tag: 'Automation',
+    title: 'Sales Mailer',
+    subtitle: 'Personal project · React, Gmail API',
+    link: 'https://github.com/chertokr/sales-mailer',
     sections: [
-      { label: 'Problem',  content: 'Two flavors were underperforming across every key metric, and an upcoming product line launch threatened to cannibalize their already-low demand, making a portfolio decision unavoidable.' },
-      { label: 'Insight',  content: 'Data showed one flavor still held meaningful machine share, and qualitative pilot feedback pointed to a formula issue rather than a category problem, opening a reformulation path alongside retirement.' },
-      { label: 'Solution', content: 'Built a decision framework evaluating four paths: full retirement, restriction to existing machines, reclassification into the new product line, or reformulation, each mapped against financials, operational complexity, and user sentiment.' },
-      { label: 'Impact',   content: 'Delivered a data-backed recommendation that resolved a long-debated internal decision, with the framework becoming reusable for future flavor portfolio reviews.' },
+      { label: 'Problem',  content: 'Sales reps spent roughly four hours a day hand-drafting and tracking personalized pricing emails.' },
+      { label: 'Insight',  content: 'Templating the content and automating the send workflow would recover hours and keep follow-ups consistent.' },
+      { label: 'Solution', content: 'Built a React and Gmail API app to create, send, and track templated pricing emails, with send history for reuse.' },
+      { label: 'Impact',   content: 'Cut drafting time by roughly 60% per rep.' },
     ],
-    skills: ['Portfolio Strategy', 'Data Analysis', 'Financial Modeling', 'Stakeholder Communication', 'Decision Frameworks'],
+    skills: ['React', 'Gmail API', 'Product Design', 'Automation'],
   },
 ]
 
 function SectionList({ sections }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 4 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 4 }}>
       {sections.map((s) => (
         <div key={s.label}>
-          <div className="ui-label" style={{ color: 'var(--accent)', marginBottom: 4 }}>{s.label}</div>
+          <div className="ui-label" style={{ marginBottom: 4 }}>{s.label}</div>
           <p className="body-text" style={{ margin: 0 }}>{s.content}</p>
         </div>
       ))}
@@ -73,60 +58,33 @@ export default function Projects() {
   return (
     <section className="projects page">
       <h2>Selected Projects</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-
-        <Expandable
-          title={
-            <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ background: '#8b5cf618', color: '#8b5cf6', fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 99 }}>Automation</span>
-              Sales Mailer
-            </span>
-          }
-          subtitle="React · Gmail API · Product design"
-        >
-          <SectionList sections={salesMailerSections} />
-          <div style={{ marginTop: 14 }}>
-            <a
-              href="https://github.com/chertokr/sales-mailer"
-              target="_blank"
-              rel="noreferrer"
-              className="project-link"
-            >
-              <ExternalLink size={13} /> View on GitHub
-            </a>
-          </div>
-        </Expandable>
-
-        {caseStudies.map((c) => (
+      <div>
+        {projects.map((p) => (
           <Expandable
-            key={c.title}
+            key={p.title}
             title={
-              <span style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-                <span style={{
-                  background: c.tagColor + '18',
-                  color: c.tagColor,
-                  fontSize: 10,
-                  fontWeight: 700,
-                  letterSpacing: '0.07em',
-                  textTransform: 'uppercase',
-                  padding: '2px 8px',
-                  borderRadius: 99,
-                  flexShrink: 0,
-                }}>{c.tag}</span>
-                {c.title}
+              <span style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                <span className="work-tag">{p.tag}</span>
+                {p.title}
               </span>
             }
-            subtitle={c.subtitle}
+            subtitle={p.subtitle}
           >
-            <SectionList sections={c.sections} />
-            <div style={{ marginTop: 14, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-              {c.skills.map((sk) => (
-                <span key={sk} className="skill-chip" style={{ fontSize: '0.78rem', padding: '4px 10px' }}>{sk}</span>
+            <SectionList sections={p.sections} />
+            <div style={{ marginTop: 16, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {p.skills.map((sk) => (
+                <span key={sk} className="skill-chip" style={{ fontSize: '0.9rem' }}>{sk}</span>
               ))}
             </div>
+            {p.link && (
+              <div style={{ marginTop: 16 }}>
+                <a href={p.link} target="_blank" rel="noreferrer" className="project-link">
+                  <ExternalLink size={13} /> View on GitHub
+                </a>
+              </div>
+            )}
           </Expandable>
         ))}
-
       </div>
     </section>
   )

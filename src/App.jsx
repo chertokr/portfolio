@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { Mail, ArrowDown, Code2 } from 'lucide-react'
-import { CONFIG, getDrivePreview } from './siteConfig'
+import { CONFIG } from './siteConfig'
 import About from './pages/About'
 import Experience from './pages/Experience'
 import Projects from './pages/Projects'
@@ -64,13 +64,17 @@ function Hero() {
         onError={e => { e.target.style.display = 'none' }}
       />
       <div className="hero-text">
-        <p className="hero-label">Product Manager · Builder · Problem Solver</p>
+        <p className="hero-label">A Product Manager Profile</p>
         <h1 className="hero-name">Rachel Chertok</h1>
         <p className="hero-bio">
-          CS &amp; Business @ Northeastern · May 2027 · Boston, MA
-          <br />
-          Incoming PM Intern @ Red Hat
+          Product manager who turns data into product decisions. CS and Business
+          Administration at Northeastern (May 2027), with PM experience at Red Hat
+          and Bevi. Seeking full-time product roles.
         </p>
+        <div className="hero-stat">
+          <b>$300K</b>
+          <span>revenue increase from a zero-cost rebrand at Bevi</span>
+        </div>
         <div className="hero-links">
           <a href={CONFIG.linkedin} target="_blank" rel="noreferrer" className="hero-link">
             <img src="/icons/linkedin.svg" width={15} height={15} alt="" style={{ filter: 'brightness(0) invert(1)' }} /> LinkedIn
@@ -96,7 +100,10 @@ function Hero() {
 }
 
 export default function App() {
-  const [showSplash, setShowSplash] = useState(true)
+  // Show the intro once per browser session; return visits go straight in
+  const [showSplash, setShowSplash] = useState(() => {
+    try { return sessionStorage.getItem('splashSeen') !== '1' } catch { return true }
+  })
   const [active, setActive]         = useState('about')
   const progressRef                 = useRef(null)
 
@@ -162,15 +169,22 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const embed = getDrivePreview(CONFIG.resumeEmbedUrl) || '/resume.pdf'
+  // Single source of truth: preview and download are the same PDF (no Doc auth-wall drift)
+  const embed = '/resume.pdf'
+
+  const dismissSplash = () => {
+    try { sessionStorage.setItem('splashSeen', '1') } catch { /* ignore */ }
+    window.scrollTo(0, 0)
+    setShowSplash(false)
+  }
 
   return (
     <>
-      {showSplash && <Splash onDone={() => { window.scrollTo(0, 0); setShowSplash(false) }} />}
+      {showSplash && <Splash onDone={dismissSplash} />}
 
       <Header active={active} />
 
-      {/* reading progress bar — sits just below header */}
+      {/* reading progress bar sits just below header */}
       <div className="progress-track">
         <div className="progress-fill" ref={progressRef} />
       </div>
@@ -185,7 +199,7 @@ export default function App() {
           <div id="contact"    className="section-anchor"><Contact /></div>
         </main>
         <footer className="site-footer">
-          © {new Date().getFullYear()} Rachel Chertok — Product Manager Candidate
+          © {new Date().getFullYear()} Rachel Chertok · Product Manager
         </footer>
       </div>
     </>

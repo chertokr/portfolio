@@ -33,10 +33,10 @@ export default function Contact() {
     <section className="contact page">
       <h2>Get in Touch</h2>
       <p style={{ color: 'var(--muted)', marginBottom: 28, fontSize: '1.05rem' }}>
-        Open to PM roles, internships, and interesting conversations.
+        Open to full-time product management roles and good conversations.
       </p>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         {links.map(l => (
           <a
             key={l.label}
@@ -44,17 +44,16 @@ export default function Contact() {
             target={l.href.startsWith('mailto') ? undefined : '_blank'}
             rel="noreferrer"
             className="contact-link"
-            style={{ '--link-color': l.color }}
           >
-            <span className="contact-icon" style={{ background: `${l.color}14`, border: `1px solid ${l.color}22` }}>
-              <l.Icon size={20} color={l.color} />
+            <span className="contact-icon">
+              <l.Icon size={20} />
             </span>
             <div style={{ flex: 1 }}>
-              <div className="ui-label" style={{ color: l.color, marginBottom: 2 }}>{l.label}</div>
-              <div style={{ fontWeight: 600, fontSize: '0.97rem' }}>{l.value}</div>
-              <div className="meta">{l.desc}</div>
+              <div className="ui-label" style={{ marginBottom: 4 }}>{l.label}</div>
+              <div style={{ fontFamily: 'var(--display)', fontWeight: 700, fontSize: '1.05rem' }}>{l.value}</div>
+              <div className="meta" style={{ marginTop: 2 }}>{l.desc}</div>
             </div>
-            <span style={{ color: l.color, opacity: 0.4, fontSize: 18 }}>→</span>
+            <span style={{ color: 'var(--accent)', fontSize: 20 }}>→</span>
           </a>
         ))}
       </div>

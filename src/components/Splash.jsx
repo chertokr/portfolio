@@ -1,88 +1,61 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
-const innerIcons = [
-  { src: '/redhatlogo.png',           alt: 'Red Hat',      size: 44 },
-  { src: '/icons/neu-seal.png',       alt: 'Northeastern', size: 40 },
-  { src: '/icons/google-icon.jpg',    alt: 'Google',       size: 42 },
-  { src: '/bevilogo.png',             alt: 'Bevi',         size: 42 },
-  { src: '/OasisLogo.png',            alt: 'Oasis',        size: 42 },
-  { src: '/icons/atlassian-icon.png', alt: 'Atlassian',    size: 40 },
-]
-
-const outerIcons = [
-  { src: '/icons/notion-logo.png',                      alt: 'Notion',   size: 40 },
-  { src: '/icons/Claude_AI_symbol.svg',                 alt: 'Claude',   size: 40 },
-  { src: '/icons/Visual_Studio_Code_1.35_icon.svg.png', alt: 'VS Code',  size: 40 },
-  { src: '/icons/chatgpt-icon.webp',                    alt: 'ChatGPT',  size: 40 },
-  { src: '/icons/github-icon.png',                      alt: 'GitHub',   size: 40 },
-  { src: '/icons/react-icon.png',                       alt: 'React',    size: 40 },
-]
-
-const INNER_R   = 300
-const OUTER_R   = 460
-const INNER_DUR = 14
-const OUTER_DUR = 20
-
-function OrbitRing({ icons, radius, duration, clockwise }) {
-  return (
-    <>
-      {icons.map((ic, i) => {
-        const delay = `-${((i / icons.length) * duration).toFixed(2)}s`
-        return (
-          <div
-            key={ic.alt}
-            style={{
-              position: 'absolute',
-              top: '50%', left: '50%',
-              marginTop: -ic.size / 2,
-              marginLeft: -ic.size / 2,
-              animationName: clockwise ? 'orbit-cw' : 'orbit-ccw',
-              animationDuration: `${duration}s`,
-              animationTimingFunction: 'linear',
-              animationIterationCount: 'infinite',
-              animationDelay: delay,
-              '--r': `${radius}px`,
-            }}
-          >
-            <div className="splash-icon-wrap" style={{ animation: 'none' }}>
-              <img src={ic.src} alt={ic.alt} width={ic.size} height={ic.size}
-                style={{ objectFit: 'contain', display: 'block' }} />
-            </div>
-          </div>
-        )
-      })}
-    </>
-  )
-}
+const AUTO_DISMISS_MS = 3800
 
 export default function Splash({ onDone }) {
   const [hiding, setHiding] = useState(false)
+  const doneRef = useRef(false)
 
   const dismiss = () => {
-    if (hiding) return
+    if (doneRef.current) return
+    doneRef.current = true
     setHiding(true)
     setTimeout(onDone, 550)
   }
 
-  const size = OUTER_R * 2 + 60
+  // Keyboard escape hatch + auto-dismiss so no one is ever trapped on the cover
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault()
+        dismiss()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    const timer = setTimeout(dismiss, AUTO_DISMISS_MS)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      clearTimeout(timer)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
-    <div className={`splash${hiding ? ' hiding' : ''}`} onClick={dismiss} style={{ cursor: 'pointer' }}>
-      <div style={{ position: 'relative', width: size, height: size }}>
-        <OrbitRing icons={innerIcons} radius={INNER_R} duration={INNER_DUR} clockwise={true} />
-        <OrbitRing icons={outerIcons} radius={OUTER_R} duration={OUTER_DUR} clockwise={false} />
-        <div style={{
-          position: 'absolute', top: '50%', left: '50%',
-          transform: 'translate(-50%, -50%)',
-          textAlign: 'center',
-          transform: 'translate(-50%, -50%)',
-          width: '320px',
-        }}>
-          <div className="splash-hi">Hi! <span className="splash-wave">👋</span> I'm Rachel.</div>
-          <div className="splash-sub">Aspiring Product Manager · Leader · Problem Solver</div>
-        </div>
+    <div className={`splash${hiding ? ' hiding' : ''}`} onClick={dismiss}>
+      <div className="cover-head" aria-hidden="true">
+        <span>The Feature Profile</span>
+        <span>Boston · MMXXVI</span>
       </div>
-      <div className="splash-cta">Click anywhere to continue</div>
+
+      <div className="cover-main">
+        <div className="cover-kicker">Product Manager</div>
+        <h1 className="cover-name">Rachel<br />Chertok</h1>
+        <p className="cover-sub">
+          Building at the intersection of data and user experience.
+          <span className="cover-wave"> 👋</span>
+        </p>
+      </div>
+
+      <div className="cover-foot">
+        <span aria-hidden="true">Product Manager · Boston, MA</span>
+        <button
+          type="button"
+          className="splash-cta"
+          onClick={(e) => { e.stopPropagation(); dismiss() }}
+        >
+          Read the issue →
+        </button>
+      </div>
     </div>
   )
 }
