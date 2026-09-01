@@ -1,193 +1,186 @@
-import { useEffect, useState, useRef } from 'react'
-import { Mail, ArrowDown, Code2 } from 'lucide-react'
-import { CONFIG, getDrivePreview } from './siteConfig'
-import About from './pages/About'
+import { useEffect, useState } from 'react'
+import { CONFIG } from './siteConfig'
+import { PROFILE, INTRO, HOW_I_WORK, CURRENTLY, INTERESTS } from './content'
 import Experience from './pages/Experience'
+import Education from './pages/Education'
+import Organizations from './pages/Organizations'
 import Projects from './pages/Projects'
+import Skills from './pages/Skills'
 import ResumePage from './pages/ResumePage'
 import Contact from './pages/Contact'
-import Splash from './components/Splash'
 
 const NAV = [
-  { id: 'about',      label: 'About' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'projects',   label: 'Projects' },
-  { id: 'resume',     label: 'Resume' },
-  { id: 'contact',    label: 'Contact' },
+  { id: 'top',           label: 'Intro' },
+  { id: 'experience',    label: 'Experience' },
+  { id: 'education',     label: 'Education' },
+  { id: 'organizations', label: 'Organizations' },
+  { id: 'projects',      label: 'Projects' },
+  { id: 'skills',        label: 'Skills' },
+  { id: 'resume',        label: 'Resume' },
+  { id: 'contact',       label: 'Contact' },
 ]
 
-function scrollTo(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-}
-
-function Header({ active }) {
+/** Sticky left column: who she is, what she wants, where to go. */
+function Rail({ active }) {
   return (
-    <header className="site-header">
-      <div className="header-inner">
-        <button className="header-name-btn" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          Rachel Chertok
-        </button>
+    <aside className="rail">
+      <div className="rail-inner">
+        <div className="rail-id">
+          <img
+            className="rail-photo"
+            src={CONFIG.headshot}
+            alt="Rachel Chertok"
+            onError={e => { e.target.style.display = 'none' }}
+          />
+          <div>
+            <h1 className="rail-name">
+              {PROFILE.name}
+              <span className="cursor" aria-hidden="true" />
+            </h1>
+            <p className="rail-title">{PROFILE.title}</p>
+            <p className="rail-location meta">{PROFILE.location}</p>
+          </div>
+        </div>
 
-        <nav className="top-nav">
-          {NAV.map(s => (
-            <a
-              key={s.id}
-              href={`#${s.id}`}
-              className={active === s.id ? 'active' : ''}
-              onClick={e => { e.preventDefault(); scrollTo(s.id) }}
-            >
-              {s.label}
+        <p className="availability">
+          <span className="dot" aria-hidden="true" />
+          {PROFILE.availability}
+        </p>
+
+        <p className="rail-opento">{PROFILE.openTo}</p>
+
+        <nav className="rail-nav">
+          {NAV.map((s, i) => (
+            <a key={s.id} href={`#${s.id}`} className={active === s.id ? 'active' : ''}>
+              <span className="rail-nav-idx">{String(i).padStart(2, '0')}</span>
+              <span className="rail-nav-label">{s.label}</span>
             </a>
           ))}
         </nav>
 
-        <div className="socials">
-          <a href={CONFIG.github} target="_blank" rel="noreferrer" aria-label="GitHub">
-            <Code2 size={18} />
-          </a>
-          <a href={CONFIG.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
-            <img src="/icons/linkedin.svg" width={18} height={18} alt="LinkedIn" className="icon" />
-          </a>
+        <div className="rail-links">
+          <a href={`mailto:${CONFIG.emailPrimary}`}>Email</a>
+          <a href={CONFIG.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href={CONFIG.github} target="_blank" rel="noreferrer">GitHub</a>
+          <a href="/resume.pdf" download>Resume</a>
         </div>
       </div>
-    </header>
+    </aside>
   )
 }
 
-function Hero() {
+function Intro() {
   return (
-    <div className="hero">
-      <img
-        className="hero-photo"
-        src={CONFIG.headshot}
-        alt="Rachel Chertok"
-        onError={e => { e.target.style.display = 'none' }}
-      />
-      <div className="hero-text">
-        <p className="hero-label">Product Manager · Builder · Problem Solver</p>
-        <h1 className="hero-name">Rachel Chertok</h1>
-        <p className="hero-bio">
-          CS &amp; Business @ Northeastern · May 2027 · Boston, MA
-          <br />
-          Incoming PM Intern @ Red Hat
-        </p>
-        <div className="hero-links">
-          <a href={CONFIG.linkedin} target="_blank" rel="noreferrer" className="hero-link">
-            <img src="/icons/linkedin.svg" width={15} height={15} alt="" style={{ filter: 'brightness(0) invert(1)' }} /> LinkedIn
-          </a>
-          <a href={CONFIG.github} target="_blank" rel="noreferrer" className="hero-link">
-            <Code2 size={15} /> GitHub
-          </a>
-          <a href={`mailto:${CONFIG.emailPrimary}`} className="hero-link">
-            <Mail size={15} /> Email
-          </a>
+    <section id="top" className="section intro-section">
+      {/* same two column grid as every dated entry, so all copy lines up */}
+      <article className="entry">
+        <div className="entry-when">Intro</div>
+        <div>
+          <p className="lead">{PROFILE.lead}</p>
+
+          <ul className="facts">
+            {PROFILE.facts.map(f => <li key={f} className="meta">{f}</li>)}
+          </ul>
+
+          <div className="intro">
+            {INTRO.map(p => <p key={p} className="body-text">{p}</p>)}
+          </div>
+
+          <div className="panels">
+            <div className="panel">
+              <span className="mono">How I work</span>
+              <ul className="panel-list">
+                {HOW_I_WORK.map(h => (
+                  <li key={h.label}>
+                    <span className="panel-label">{h.label}</span>
+                    <span className="panel-value">{h.value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="panel panel-accent">
+              <span className="mono">Currently</span>
+              <ul className="panel-list">
+                {CURRENTLY.map(c => (
+                  <li key={c.label}>
+                    <span className="panel-label">{c.label}</span>
+                    <span className="panel-value">{c.value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-      <button
-        className="hero-scroll-hint"
-        onClick={() => scrollTo('about')}
-        aria-label="Scroll to About"
-      >
-        <span>scroll to explore</span>
-        <ArrowDown size={14} />
-      </button>
-    </div>
+      </article>
+    </section>
   )
 }
 
 export default function App() {
-  const [showSplash, setShowSplash] = useState(true)
-  const [active, setActive]         = useState('about')
-  const progressRef                 = useRef(null)
+  const [active, setActive] = useState('top')
 
-  // Reading progress bar
+  // A reload should start at the top. Without this, the browser restores the
+  // old scroll position (or an old #hash) and the page opens mid document.
   useEffect(() => {
-    const bar = progressRef.current
-    if (!bar) return
-    const onScroll = () => {
-      const doc    = document.documentElement
-      const total  = doc.scrollHeight - doc.clientHeight
-      const pct    = total > 0 ? (window.scrollY / total) * 100 : 0
-      bar.style.width = `${pct}%`
+    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual'
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname)
     }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    window.scrollTo(0, 0)
   }, [])
 
-  // Active section via IntersectionObserver
   useEffect(() => {
-    if (showSplash) return
     const obs = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) setActive(entry.target.id)
-        })
-      },
-      { rootMargin: '-10% 0px -80% 0px', threshold: 0 }
+      entries => entries.forEach(e => e.isIntersecting && setActive(e.target.id)),
+      { rootMargin: '-10% 0px -75% 0px' }
     )
     NAV.forEach(s => {
       const el = document.getElementById(s.id)
       if (el) obs.observe(el)
     })
     return () => obs.disconnect()
-  }, [showSplash])
+  }, [])
 
-  // Reveal animations
   useEffect(() => {
-    if (showSplash) return
     const obs = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('reveal-visible')
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.08 }
+      (entries, o) => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('reveal-in'); o.unobserve(e.target) }
+      }),
+      { threshold: 0.05 }
     )
-    document.querySelectorAll('section, .card').forEach(el => {
+    document.querySelectorAll('.section').forEach(el => {
       el.classList.add('reveal')
       obs.observe(el)
     })
     return () => obs.disconnect()
-  }, [showSplash])
-
-  // Shrink header on scroll
-  useEffect(() => {
-    const header = document.querySelector('.site-header')
-    if (!header) return
-    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 72)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const embed = getDrivePreview(CONFIG.resumeEmbedUrl) || '/resume.pdf'
-
   return (
-    <>
-      {showSplash && <Splash onDone={() => { window.scrollTo(0, 0); setShowSplash(false) }} />}
+    <div className="shell">
+      <Rail active={active} />
 
-      <Header active={active} />
+      <main className="content">
+        <Intro />
+        <Experience />
+        <Education />
+        <Organizations />
+        <Projects />
+        <Skills />
+        <ResumePage />
+        <Contact />
 
-      {/* reading progress bar — sits just below header */}
-      <div className="progress-track">
-        <div className="progress-fill" ref={progressRef} />
-      </div>
-
-      <div className="container large">
-        <main>
-          <Hero />
-          <div id="about"      className="section-anchor"><About /></div>
-          <div id="experience" className="section-anchor"><Experience /></div>
-          <div id="projects"   className="section-anchor"><Projects /></div>
-          <div id="resume"     className="section-anchor"><ResumePage embedUrl={embed} /></div>
-          <div id="contact"    className="section-anchor"><Contact /></div>
-        </main>
-        <footer className="site-footer">
-          © {new Date().getFullYear()} Rachel Chertok — Product Manager Candidate
+        <footer className="footer">
+          <div className="footer-row">
+            <span>&copy; {new Date().getFullYear()} Rachel Chertok, graduating May 2027</span>
+            <span>Built with React, no template</span>
+          </div>
+          <div className="footer-interests">
+            <span className="mono">Off the clock</span>
+            <span>{INTERESTS.join(' / ')}</span>
+          </div>
         </footer>
-      </div>
-    </>
+      </main>
+    </div>
   )
 }

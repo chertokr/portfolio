@@ -1,20 +1,46 @@
-import React from 'react'
+import { EDUCATION, EDUCATION_HONORS, COURSEWORK, RESEARCH } from '../content'
+import { Section, Entry } from '../components/Section'
 
-export default function Education(){
+export default function Education() {
   return (
-    <section className="education page">
-      <h2>Education</h2>
-      <div className="edu-summary">
-        <h3>Northeastern University — Khoury College of Computer Science</h3>
-        <p className="meta">B.S. in Computer Science and Business Administration | Concentration in Fintech — Expected May 2027</p>
-        <p className="meta">Relevant coursework: Object-Oriented Design, Programming with Data, Algorithms, Database Design, Marketing, Financial Management</p>
-      </div>
+    <Section id="education" path="education" title="Education and Coursework">
+      <article className="entry">
+        <div className="entry-when">{EDUCATION.when}</div>
+        <div>
+          <h3 className="entry-title">{EDUCATION.school}</h3>
+          <div className="entry-org">
+            {EDUCATION.degree}
+            <span className="sep">/</span>{EDUCATION.concentration}
+          </div>
+          <p className="meta">{EDUCATION.location}</p>
+          <div className="tags">
+            {EDUCATION_HONORS.map(h => <span key={h} className="chip">{h}</span>)}
+          </div>
 
-      <div className="research">
-        <h3>Research — Markov Chain Research for Predictive Models</h3>
-        <p className="meta">June 2025 - December 2025</p>
-        <p>Used Claude AI prompt engineering and Python (networkx, numpy) to model memory-aware Markov Chains and analyze citation networks for predictive finance applications.</p>
+          <div className="course-groups">
+            {COURSEWORK.map(g => (
+              <div key={g.area} className={g.current ? 'course-group is-current' : 'course-group'}>
+                <span className="mono">{g.area}</span>
+                <ul className="course-list">
+                  {g.courses.map(c => (
+                    <li key={c.code}>
+                      <span className="code">{c.code}</span>
+                      <span className="course-title">{c.title}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </article>
+
+      <div className="subhead">
+        <span className="mono">Research</span>
       </div>
-    </section>
+      <div className="entries">
+        <Entry {...RESEARCH} />
+      </div>
+    </Section>
   )
 }
