@@ -8,16 +8,16 @@ export const PROFILE = {
   availability: 'Graduating May 2027, seeking full-time PM roles',
   location: 'Boston, MA',
   openTo: 'Open to Boston, New York, Chicago, Texas, California, and remote',
-  lead: 'I turn usage data into product decisions, with the SQL and Python to do it myself.',
+  lead: 'I am a CS and business student at Northeastern who works on data-heavy products.',
 }
 
 export const INTRO =
-  'I am a CS and business student who ended up in product because I like asking what the data actually says. Most of the work I am proudest of started as a query nobody had run yet.'
+  'I spent this past summer as a product management intern at Red Hat, and the semester before that as a co-op at Bevi, mostly on questions that needed someone to go pull the numbers. I write the SQL and Python to do that part myself.'
 
 export const HOW_I_WORK = [
-  { label: 'Problems', value: 'I sit in the problem longer than feels comfortable.' },
-  { label: 'People', value: 'The best ideas come from whoever sits closest to the problem.' },
-  { label: 'Data', value: 'I bring numbers to a conversation, not to end it.' },
+  { label: 'Problems', value: 'I spend more time defining the problem than picking the solution.' },
+  { label: 'People', value: 'I start with whoever is closest to the work: reps, engineers, operators.' },
+  { label: 'Data', value: 'I pull the numbers myself, then check them against what the team already knows.' },
 ]
 
 export const INTERESTS = ['Skiing', 'Baking', 'Russian', 'Italian', 'Star Wars', 'Lord of the Rings']
