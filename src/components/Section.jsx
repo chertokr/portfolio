@@ -30,9 +30,11 @@ export function Entry({ when, title, org, note, bullets, tags }) {
           {org}
           {note && <><span className="sep">/</span>{note}</>}
         </div>
-        <ul className="bullets">
-          {bullets.map(b => <li key={b}>{b}</li>)}
-        </ul>
+        {bullets?.length > 0 && (
+          <ul className="bullets">
+            {bullets.map(b => <li key={b}>{b}</li>)}
+          </ul>
+        )}
         <Tags items={tags} />
       </div>
     </article>

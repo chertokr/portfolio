@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { CONFIG } from './siteConfig'
-import { PROFILE, INTRO, HOW_I_WORK, CURRENTLY, INTERESTS } from './content'
+import { PROFILE, INTRO, HOW_I_WORK, INTERESTS } from './content'
 import Experience from './pages/Experience'
 import Education from './pages/Education'
 import Organizations from './pages/Organizations'
@@ -77,39 +77,18 @@ function Intro() {
         <div className="entry-when">Intro</div>
         <div>
           <p className="lead">{PROFILE.lead}</p>
+          <p className="body-text intro">{INTRO}</p>
 
-          <ul className="facts">
-            {PROFILE.facts.map(f => <li key={f} className="meta">{f}</li>)}
-          </ul>
-
-          <div className="intro">
-            {INTRO.map(p => <p key={p} className="body-text">{p}</p>)}
-          </div>
-
-          <div className="panels">
-            <div className="panel">
-              <span className="mono">How I work</span>
-              <ul className="panel-list">
-                {HOW_I_WORK.map(h => (
-                  <li key={h.label}>
-                    <span className="panel-label">{h.label}</span>
-                    <span className="panel-value">{h.value}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="panel panel-accent">
-              <span className="mono">Currently</span>
-              <ul className="panel-list">
-                {CURRENTLY.map(c => (
-                  <li key={c.label}>
-                    <span className="panel-label">{c.label}</span>
-                    <span className="panel-value">{c.value}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="panel panel-accent">
+            <span className="mono">How I work</span>
+            <ul className="panel-list">
+              {HOW_I_WORK.map(h => (
+                <li key={h.label}>
+                  <span className="panel-label">{h.label}</span>
+                  <span className="panel-value">{h.value}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </article>

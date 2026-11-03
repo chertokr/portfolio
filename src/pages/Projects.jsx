@@ -2,21 +2,20 @@ import { useState } from 'react'
 import { PROJECTS } from '../content'
 import { Section, Tags } from '../components/Section'
 
-const PISI = [
+const DETAIL = [
   ['Problem', 'problem'],
-  ['Insight', 'insight'],
   ['Solution', 'solution'],
   ['Impact', 'impact'],
 ]
 
 function Project({ project, open, onToggle }) {
-  const { title, when, stack, href, tags } = project
+  const { title, when, summary, stack, href, tags } = project
   return (
     <article className="project">
       <button className="project-head" onClick={onToggle} aria-expanded={open}>
         <span>
           <span className="entry-title project-title">{title}</span>
-          <span className="meta">{stack}</span>
+          <span className="project-summary">{summary}</span>
         </span>
         <span className="project-right">
           <span className="meta">{when}</span>
@@ -26,8 +25,9 @@ function Project({ project, open, onToggle }) {
 
       {open && (
         <div className="project-body">
+          <p className="meta project-stack">{stack}</p>
           <div className="pisi">
-            {PISI.map(([label, key]) => (
+            {DETAIL.map(([label, key]) => (
               <div key={key} className="pisi-row">
                 <span className="mono">{label}</span>
                 <p className="body-text">{project[key]}</p>
@@ -49,7 +49,8 @@ function Project({ project, open, onToggle }) {
 }
 
 export default function Projects() {
-  const [open, setOpen] = useState(PROJECTS[0].title)
+  // all collapsed by default: the summary lines carry the section
+  const [open, setOpen] = useState(null)
   return (
     <Section id="projects" path="projects" title="Projects">
       <div>

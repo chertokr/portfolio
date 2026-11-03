@@ -12,8 +12,9 @@ export default function Contact() {
   return (
     <Section id="contact" path="contact" title="Contact">
       <p className="body-text" style={{ marginBottom: 'var(--s-5)' }}>
-        I graduate in May 2027 and am actively looking for full-time product management roles in tech and fintech, in Boston, New York, Chicago, Texas, California, or fully remote. Always happy to talk about product, data, or cloud. The fastest way to reach me is email.
+        Open to full-time PM roles starting June 2027. Email is the fastest way to reach me.
       </p>
+
       <div className="contact-list">
         {LINKS.map(l => (
           <a
