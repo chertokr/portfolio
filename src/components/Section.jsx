@@ -1,11 +1,14 @@
-export function Section({ id, path, title, children }) {
+/** tone: 'paper' (default), 'ink' (dark band), or 'accent' (terracotta band) */
+export function Section({ id, path, title, tone = 'paper', children }) {
   return (
-    <section id={id} className="section">
-      <div className="section-head">
-        <span className="idx">~/{path}</span>
-        <h2>{title}</h2>
+    <section id={id} className={`section section--${tone}`}>
+      <div className="section-inner">
+        <div className="section-head">
+          <span className="idx">~/{path}</span>
+          <h2>{title}</h2>
+        </div>
+        {children}
       </div>
-      {children}
     </section>
   )
 }

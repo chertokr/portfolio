@@ -17,6 +17,10 @@
   --line-2:     #d3c9bc;
 
   --accent:     #b0533a;  /* terracotta; cool alternative: #1d4ed8 */
+  --band-ink:   #231d1a;  /* dark band ground */
+  --band-accent:#b0533a;  /* accent band ground; kept separate from --accent,
+                             which the band itself redefines */
+  --on-dark:    #e08e6d;  /* accent readable on the dark band */
 
   /* ---- type ----------------------------------------------------
      Active pairing: Space Grotesk display + Inter body + JetBrains
@@ -39,8 +43,8 @@
   --t-sm:   0.8125rem;
   --t-base: 0.9375rem;
   --t-md:   1.0625rem;
-  --t-lg:   1.375rem;
-  --t-xl:   1.875rem;
+  --t-lg:   1.75rem;
+  --t-xl:   2rem;
 
   --lh-tight: 1.25;
   --lh-body:  1.68;
@@ -266,25 +270,56 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- content column ---------- */
 
-.content {
-  padding: var(--s-7) var(--s-7) 0;
-  max-width: calc(var(--content-w) + var(--s-7) * 2);
+.content { min-width: 0; }
+
+/* Sections run the full width of the column so a band can reach the edge.
+   The inner wrapper keeps the copy at a readable measure. */
+.section { padding: var(--s-8) var(--s-7); }
+.section-inner { max-width: var(--content-w); }
+.intro-section { padding-top: var(--s-7); }
+
+/* A band repaints the local palette. Every component reads these tokens,
+   so one rule flips an entire section. */
+.section--ink {
+  background: var(--band-ink);
+  --ink:    #fdfbf9;
+  --ink-2:  rgba(253, 251, 249, 0.80);
+  --ink-3:  rgba(253, 251, 249, 0.52);
+  --line:   rgba(253, 251, 249, 0.16);
+  --line-2: rgba(253, 251, 249, 0.34);
+  --accent: var(--on-dark);
+  color: var(--ink);
 }
 
-.section { padding-top: var(--s-8); }
-.intro-section { padding-top: 0; }
+.section--accent {
+  background: var(--band-accent);
+  --ink:    #ffffff;
+  --ink-2:  rgba(255, 255, 255, 0.92);
+  --ink-3:  rgba(255, 255, 255, 0.72);
+  --line:   rgba(255, 255, 255, 0.28);
+  --line-2: rgba(255, 255, 255, 0.45);
+  --accent: #ffffff;
+  color: var(--ink);
+}
 
 .section-head {
   position: relative;
   display: flex;
   align-items: baseline;
-  gap: var(--s-3);
-  padding-bottom: var(--s-3);
+  gap: var(--s-4);
+  padding-bottom: var(--s-4);
   margin-bottom: var(--s-6);
   border-bottom: 1px solid var(--line);
 }
-.section-head h2 { font-size: var(--t-lg); }
-.section-head .idx { font-family: var(--font-mono); font-size: var(--t-xs); color: var(--ink-3); }
+.section-head h2 {
+  font-size: var(--t-lg);
+  letter-spacing: -0.02em;
+}
+.section-head .idx {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  color: var(--ink-3);
+}
 
 /* ---------- intro ---------- */
 
@@ -511,8 +546,7 @@ a { color: inherit; text-decoration: none; }
 /* ---------- footer ---------- */
 
 .footer {
-  margin-top: var(--s-8);
-  padding: var(--s-5) 0;
+  padding: var(--s-5) var(--s-7);
   border-top: 1px solid var(--line);
   font-family: var(--font-mono);
   font-size: var(--t-sm);
@@ -559,12 +593,14 @@ a { color: inherit; text-decoration: none; }
 
 @media (min-width: 1500px) {
   :root { --rail-w: 340px; }
-  .content { padding-left: var(--s-8); padding-right: var(--s-8); }
+  .section { padding-left: var(--s-8); padding-right: var(--s-8); }
+  .footer { padding-left: var(--s-8); padding-right: var(--s-8); }
 }
 
 @media (max-width: 1024px) {
   :root { --rail-w: 250px; }
-  .content { padding: var(--s-7) var(--s-6) 0; }
+  .section { padding: var(--s-7) var(--s-6); }
+  .footer { padding: var(--s-5) var(--s-6); }
 }
 
 @media (max-width: 860px) {
@@ -582,8 +618,8 @@ a { color: inherit; text-decoration: none; }
   .availability { display: flex; }
   .rail-nav-idx { display: none; }
   .rail-links { margin-top: 0; }
-  .content { padding: var(--s-6) var(--s-5) 0; max-width: none; }
-  .section { padding-top: var(--s-7); }
+  .section { padding: var(--s-7) var(--s-5); }
+  .footer { padding: var(--s-5); }
 }
 
 @media (max-width: 680px) {

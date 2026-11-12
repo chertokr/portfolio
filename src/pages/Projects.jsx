@@ -59,7 +59,7 @@ export default function Projects() {
   // all collapsed by default: the summary lines carry the section
   const [open, setOpen] = useState(null)
   return (
-    <Section id="projects" path="projects" title="Projects">
+    <Section id="projects" path="projects" tone="ink" title="Projects">
       <div>
         {PROJECTS.map(p => (
           <Project

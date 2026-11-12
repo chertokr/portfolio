@@ -71,9 +71,10 @@ function Rail({ active }) {
 
 function Intro() {
   return (
-    <section id="top" className="section intro-section">
-      {/* same two column grid as every dated entry, so all copy lines up */}
-      <article className="entry">
+    <section id="top" className="section section--paper intro-section">
+      <div className="section-inner">
+        {/* same two column grid as every dated entry, so all copy lines up */}
+        <article className="entry">
         <div className="entry-when">Intro</div>
         <div>
           <p className="lead">{PROFILE.lead}</p>
@@ -90,8 +91,9 @@ function Intro() {
               ))}
             </ul>
           </div>
-        </div>
-      </article>
+          </div>
+        </article>
+      </div>
     </section>
   )
 }
@@ -150,6 +152,7 @@ export default function App() {
         <Contact />
 
         <footer className="footer">
+          <div className="section-inner">
           <div className="footer-row">
             <span>&copy; {new Date().getFullYear()} Rachel Chertok, graduating May 2027</span>
             <span>Built with React, no template</span>
@@ -157,6 +160,7 @@ export default function App() {
           <div className="footer-interests">
             <span className="mono">Off the clock</span>
             <span>{INTERESTS.join(' / ')}</span>
+          </div>
           </div>
         </footer>
       </main>

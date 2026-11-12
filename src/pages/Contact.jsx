@@ -10,7 +10,7 @@ const LINKS = [
 
 export default function Contact() {
   return (
-    <Section id="contact" path="contact" title="Contact">
+    <Section id="contact" path="contact" tone="accent" title="Contact">
       <p className="body-text" style={{ marginBottom: 'var(--s-5)' }}>
         Open to full-time PM roles starting June 2027. Email is the fastest way to reach me.
       </p>
