@@ -1,6 +1,6 @@
 export const CONFIG = {
-  emailPrimary: 'chertok.r@northeastern.edu',
-  emailSecondary: 'rchertok@gmail.com',
+  emailPrimary: 'rchertok@gmail.com',          // the one to contact her on
+  emailSecondary: 'chertok.r@northeastern.edu', // school address
   linkedin: 'https://www.linkedin.com/in/rachel-chertok/',
   github: 'https://github.com/chertokr',
   headshot: '/headshot.jpg',
