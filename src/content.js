@@ -29,8 +29,12 @@ export const WORK = [
     place: 'RHEL Cloud Business Unit, Boston',
     bullets: [
       'Analyzed RHEL deployment performance across AWS, GCP, OCI, and Azure to inform roadmap decisions.',
-      'Built a real-time executive dashboard consolidating revenue, pipeline, and competitive data for the business unit.',
+      'Built a real-time executive dashboard consolidating revenue, pipeline, and competitive data, cutting the time to get current numbers from weeks to seconds.',
     ],
+    stat: {
+      value: 'Weeks to seconds',
+      note: 'time to pull current revenue, pipeline and competitive numbers',
+    },
     tags: ['Python', 'Jira API', 'A/B Testing'],
   },
   {
@@ -134,4 +138,7 @@ export const SKILLS = [
   { area: 'Product', items: ['User Research', 'A/B Testing', 'Roadmapping', 'Sprint Planning', 'Financial Modeling'] },
 ]
 
-export const INTERESTS = ['Skiing', 'Baking', 'Russian', 'Italian', 'Star Wars', 'Lord of the Rings']
+export const INTERESTS = ['Skiing', 'Baking', 'Star Wars', 'Lord of the Rings']
+
+// spoken languages, not the programming kind in SKILLS
+export const LANGUAGES = ['Russian', 'Italian']

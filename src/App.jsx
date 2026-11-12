@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { CONFIG } from './siteConfig'
 import {
   PROFILE, HEADLINE, METRICS, WORK, PROJECTS,
-  EDUCATION, COURSEWORK, RESEARCH, ORGS, SKILLS, INTERESTS,
+  EDUCATION, COURSEWORK, RESEARCH, ORGS, SKILLS, INTERESTS, LANGUAGES,
 } from './content'
 import Card, { Tags } from './components/Card'
 import ProjectCard from './components/ProjectCard'
@@ -79,6 +79,13 @@ export default function App() {
             <ul className="bullets">
               {w.bullets.map(b => <li key={b}>{b}</li>)}
             </ul>
+            {w.stat && (
+              <div className="stat">
+                <p className="stat-value">{w.stat.value}</p>
+                <Cut left={2} />
+                <p className="card-meta">{w.stat.note}</p>
+              </div>
+            )}
             <Tags items={w.tags} />
           </Card>
         ))}
@@ -168,8 +175,13 @@ export default function App() {
         </Card>
 
         <footer className="footer">
-          <span>&copy; {new Date().getFullYear()} Rachel Chertok</span>
-          <span>Off the clock: {INTERESTS.join(', ')}</span>
+          <div className="footer-group">
+            <p className="card-label">Off the clock</p>
+            <p>{INTERESTS.join(', ')}</p>
+            <p className="card-label footer-sub">Languages</p>
+            <p>{LANGUAGES.join(', ')}</p>
+          </div>
+          <span className="footer-copy">&copy; {new Date().getFullYear()} Rachel Chertok</span>
         </footer>
       </main>
     </>
