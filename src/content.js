@@ -1,175 +1,187 @@
-// All site copy lives here so sections stay presentational.
+// All site copy lives here.
 // House style: no em or en dashes anywhere. Use hyphens, commas, or "to".
-// Keep it short. Every line here competes for attention with the work itself.
 
 export const PROFILE = {
   name: 'Rachel Chertok',
-  title: 'Product management, data, and fintech',
-  availability: 'Graduating May 2027, seeking full-time PM roles',
-  location: 'Boston, MA',
-  openTo: 'Open to Boston, New York, Chicago, Texas, California, and remote',
-  lead: 'I am a CS and business student at Northeastern who works on data-heavy products.',
+  role: 'Product management, data, fintech',
+  blurb:
+    'I am a CS and business student at Northeastern who works on data-heavy products. ' +
+    'Four years, two co-ops, and a lot of queries nobody had run yet.',
+  availability: 'Graduating May 2027, open to full-time PM roles',
+  openTo: 'Boston, New York, Chicago, Texas, California, or remote',
 }
 
-export const INTRO =
-  'I spent this past summer as a product management intern at Red Hat, and the semester before that as a co-op at Bevi, mostly on questions that needed someone to go pull the numbers. I write the SQL and Python to do that part myself.'
-
-export const HOW_I_WORK = [
-  { label: 'Problems', value: 'I spend more time defining the problem than picking the solution.' },
-  { label: 'People', value: 'I start with whoever is closest to the work: reps, engineers, operators.' },
-  { label: 'Data', value: 'I pull the numbers myself, then check them against what the team already knows.' },
+export const FILTERS = [
+  { id: 'all',     label: 'Everything' },
+  { id: 'work',    label: 'Work' },
+  { id: 'project', label: 'Projects' },
+  { id: 'school',  label: 'School' },
+  { id: 'org',     label: 'Orgs' },
 ]
 
-export const INTERESTS = ['Skiing', 'Baking', 'Russian', 'Italian', 'Star Wars', 'Lord of the Rings']
-
-export const EXPERIENCE = [
+// The spine. Oldest first: the page walks forward through the years.
+export const TIMELINE = [
   {
-    when: 'May 2026 to Aug 2026',
-    title: 'Product Management Intern',
-    org: 'Red Hat',
-    note: 'Boston, MA',
-    bullets: [
-      'Analyzed RHEL deployment performance across AWS, GCP, OCI, and Azure to inform roadmap decisions.',
-      'Built a real-time executive dashboard consolidating revenue, pipeline, and competitive data for the RHEL Cloud Business Unit.',
-    ],
-    tags: ['Python', 'Jira API', 'A/B Testing', 'Cloud'],
+    id: 'neu',
+    year: '2023',
+    when: 'September 2023',
+    type: 'school',
+    title: 'Started at Northeastern',
+    org: 'Khoury College and D’Amore-McKim',
+    detail: 'B.S. in Computer Science and Business Administration, concentration in Fintech.',
+    tags: ['Boston'],
   },
   {
-    when: 'Jul 2025 to Dec 2025',
-    title: 'Product Management Co-op',
-    org: 'Bevi',
-    note: 'Boston, MA',
-    bullets: [
-      'Tracked unit and flavor performance across 2M+ machine usage events in Snowflake and Looker.',
-      'Coordinated a zero-cost rebrand (Key Lime to Lime) that drove a $300K revenue increase.',
-      'Built an AI sales assistant on the OpenAI API recommending machines and flavors by office profile.',
-    ],
-    tags: ['SQL', 'Snowflake', 'Looker', 'OpenAI API'],
-  },
-]
-
-export const EDUCATION = {
-  school: 'Northeastern University',
-  degree: 'B.S. in Computer Science and Business Administration',
-  concentration: 'Concentration in Fintech',
-  when: 'Expected May 2027',
-  location: 'Boston, MA',
-}
-
-export const EDUCATION_HONORS = ["Dean's List, Spring 2026"]
-
-// Selected coursework only. Intro sequences, labs, and electives are left out
-// on purpose: the full transcript is a document, not a web page.
-export const COURSEWORK = [
-  {
-    area: 'Computer Science and Data',
-    courses: [
-      { code: 'CS 3500', title: 'Object-Oriented Design' },
-      { code: 'CS 3650', title: 'Computer Systems' },
-      { code: 'CS 3000', title: 'Algorithms and Data' },
-      { code: 'DS 3000', title: 'Foundations of Data Science' },
-      { code: 'DS 2000', title: 'Programming with Data' },
-    ],
+    id: 'chiomega',
+    year: '2023',
+    when: 'September 2023',
+    type: 'org',
+    title: 'Joined Chi Omega',
+    detail: 'Philanthropy and chapter programming, still a member.',
   },
   {
-    area: 'Business and Finance',
-    courses: [
-      { code: 'FINA 3301', title: 'Corporate Finance' },
-      { code: 'FINA 2201', title: 'Financial Management' },
-      { code: 'ACCT 1201', title: 'Financial Accounting' },
-      { code: 'MGSC 2301', title: 'Business Statistics' },
-      { code: 'MKTG 2201', title: 'Marketing' },
-    ],
-  },
-  {
-    area: 'In Progress, Fall 2026',
-    current: true,
-    courses: [
-      { code: 'CS 3200',   title: 'Introduction to Databases' },
-      { code: 'FINA 4350', title: 'Applied Financial Econometrics' },
-      { code: 'ORGB 3201', title: 'Organizational Behavior' },
-    ],
-  },
-]
-
-export const RESEARCH = {
-  when: 'Jun 2025 to Dec 2025',
-  title: 'Markov Chain Research for Predictive Models',
-  org: 'Northeastern University',
-  bullets: [
-    'Modeled memory-aware Markov Chains in Python (networkx, numpy) for predictive finance applications.',
-  ],
-  tags: ['Python', 'Research'],
-}
-
-export const ORGS = [
-  {
-    when: 'Jan 2024 to May 2026',
-    title: 'Executive Board President',
-    org: 'Oasis NEU',
-    note: 'Web development club',
-    bullets: [
-      'Led 95+ React projects and the workshops and events around them, across a 150+ member club.',
-    ],
+    id: 'oasis',
+    year: '2024',
+    when: 'January 2024 to May 2026',
+    type: 'org',
+    title: 'Elected president of Oasis NEU',
+    org: 'Student led web development club',
+    detail:
+      'Ran a 150+ member club: recruitment, workshops, events, and reviews for 95+ React projects built for real clients.',
+    metric: { value: '95+', label: 'React projects led' },
     tags: ['React', 'Leadership'],
   },
   {
-    when: 'Sep 2023 to Present',
-    title: 'Member',
-    org: 'Chi Omega',
+    id: 'markov',
+    year: '2025',
+    when: 'June 2025 to December 2025',
+    type: 'school',
+    title: 'Markov chain research',
+    org: 'Northeastern University',
+    detail:
+      'Modeled memory-aware Markov Chains in Python with networkx and numpy, for predictive finance applications.',
+    tags: ['Python', 'Research'],
   },
-]
-
-export const PROJECTS = [
   {
-    title: 'RHEL Cloud Executive Dashboard',
-    when: 'May 2026 to Aug 2026',
-    stack: 'Red Hat / Python, Jira API',
-    summary: 'A live view of revenue, pipeline, and competitive data for a cloud business unit.',
-    problem: 'Decisions needed numbers that lived in separate places and had to be pulled by hand.',
-    solution: 'Built a real-time dashboard in Python on the Google Sheets and Jira APIs, with A/B tested layouts.',
-    impact: 'The team now reviews current numbers in its regular meetings instead of assembling them.',
+    id: 'bevi',
+    year: '2025',
+    when: 'July 2025 to December 2025',
+    type: 'work',
+    title: 'Product management co-op at Bevi',
+    org: 'Software and beverage product',
+    detail:
+      'Tracked unit and flavor performance with SQL segmentation in Snowflake and Looker, ran standups and sprint planning, and built an AI sales assistant on the OpenAI API that recommended machines by office profile.',
+    metric: { value: '2M+', label: 'machine usage events analyzed' },
+    tags: ['SQL', 'Snowflake', 'Looker', 'OpenAI API'],
+  },
+  {
+    id: 'flavor',
+    year: '2025',
+    when: 'July 2025 to September 2025',
+    type: 'project',
+    title: 'Flavor swaps and voting',
+    org: 'Bevi',
+    detail:
+      'Low-performing SKUs were holding machine slots. Built a Python model on Snowflake data to flag them and recommend swaps, then piloted it across 110 partner sites with a flavor voting program.',
+    metric: { value: '+30%', label: 'concentrate consumption' },
+    tags: ['Python', 'Snowflake', 'Looker'],
+  },
+  {
+    id: 'mailer',
+    year: '2025',
+    when: 'August 2025 to May 2026',
+    type: 'project',
+    title: 'Sales Mailer',
+    org: 'Personal project',
+    detail:
+      'Reps drafted pricing emails by hand and tracked sends manually, so follow-ups slipped. Built a React app on the Gmail API with templates and send history as a first-class feature.',
+    metric: { value: '60%', label: 'less drafting time per rep' },
+    tags: ['React', 'Gmail API'],
+    links: [
+      { label: 'Open the live app', href: 'https://sales-mailer-mu.vercel.app/' },
+      { label: 'Source on GitHub', href: 'https://github.com/chertokr/sales-mailer' },
+    ],
+  },
+  {
+    id: 'keylime',
+    year: '2025',
+    when: 'Autumn 2025',
+    type: 'project',
+    title: 'Renamed Key Lime to Lime',
+    org: 'Bevi',
+    detail:
+      'A flavor was underperforming for a reason that turned out to be its name. Coordinated the rebrand across software, marketing, and sales at zero cost.',
+    metric: { value: '$300K', label: 'revenue increase' },
+    tags: ['User Research', 'Go-to-Market'],
+  },
+  {
+    id: 'deans',
+    year: '2026',
+    when: 'Spring 2026',
+    type: 'school',
+    title: 'Dean’s List',
+    detail: 'Corporate Finance, Foundations of Data Science, Business Statistics.',
+  },
+  {
+    id: 'redhat',
+    year: '2026',
+    when: 'May 2026 to August 2026',
+    type: 'work',
+    title: 'Product management intern at Red Hat',
+    org: 'RHEL Cloud Business Unit',
+    detail:
+      'Analyzed RHEL deployment performance across AWS, GCP, OCI, and Azure to inform roadmap decisions.',
+    metric: { value: '4', label: 'clouds compared' },
     tags: ['Python', 'Jira API', 'A/B Testing'],
   },
   {
-    title: 'Sales Mailer',
-    when: 'Aug 2025 to May 2026',
-    stack: 'Personal project / React, Gmail API',
-    href: 'https://github.com/chertokr/sales-mailer',
-    live: 'https://sales-mailer-mu.vercel.app/',
-    summary: 'Templated pricing emails and send history tracking for sales reps.',
-    problem: 'Reps drafted pricing emails by hand and tracked sends manually, so follow-ups slipped.',
-    solution: 'Built a React app on the Gmail API with templates and send history as a first-class feature.',
-    impact: 'Cut drafting time roughly 60% per rep and removed duplicate outreach.',
-    tags: ['React', 'Gmail API'],
+    id: 'dashboard',
+    year: '2026',
+    when: 'Summer 2026',
+    type: 'project',
+    title: 'RHEL cloud executive dashboard',
+    org: 'Red Hat',
+    detail:
+      'Decisions needed numbers that lived in separate places and got pulled by hand. Built a real-time dashboard in Python on the Google Sheets and Jira APIs, with A/B tested layouts, so the team reviews current revenue, pipeline, and competitive data in its regular meetings.',
+    metric: { value: 'live', label: 'instead of assembled by hand' },
+    tags: ['Python', 'Google Sheets API', 'Jira API'],
   },
   {
-    title: 'Flavor Swaps and Voting',
-    when: 'Jul 2025 to Sep 2025',
-    stack: 'Bevi / Python, Snowflake, Looker',
-    summary: 'A SKU optimization model, piloted across 110 partner sites.',
-    problem: 'Low-performing SKUs held machine slots and held down concentrate consumption.',
-    solution: 'Built a Python model on Snowflake data to flag low performers and recommend swaps, piloted with a voting program.',
-    impact: 'Boosted concentrate consumption 30% across strategic accounts.',
-    tags: ['Python', 'Snowflake', 'Looker'],
+    id: 'fall',
+    year: '2026',
+    when: 'Right now',
+    type: 'school',
+    status: 'now',
+    title: 'Fall semester',
+    detail:
+      'CS 3200 Introduction to Databases, FINA 4350 Applied Financial Econometrics, ORGB 3201 Organizational Behavior.',
+  },
+  {
+    id: 'grad',
+    year: '2027',
+    when: 'May 2027',
+    type: 'school',
+    status: 'future',
+    title: 'Graduating',
+    detail: 'B.S. Computer Science and Business Administration, concentration in Fintech.',
+  },
+  {
+    id: 'next',
+    year: '2027',
+    when: 'June 2027',
+    type: 'work',
+    status: 'future',
+    title: 'Whatever is next',
+    detail:
+      'Looking for a full-time product role where the roadmap gets argued with data. Boston, New York, Chicago, Texas, California, or remote.',
   },
 ]
 
 export const SKILLS = [
-  {
-    group: 'Technical',
-    rows: [
-      { area: 'Languages', items: ['Python', 'SQL', 'Java', 'R'] },
-      { area: 'Data',      items: ['Snowflake', 'Looker', 'Hex', 'numpy'] },
-      { area: 'Tools',     items: ['OpenAI API', 'Claude Code', 'Git', 'Jira'] },
-    ],
-  },
-  {
-    group: 'Product',
-    rows: [
-      { area: 'Discovery', items: ['User Research', 'Competitive Analysis'] },
-      { area: 'Delivery',  items: ['Agile', 'Sprint Planning', 'Roadmapping'] },
-      { area: 'Analysis',  items: ['A/B Testing', 'SQL Segmentation', 'Dashboarding', 'Financial Modeling'] },
-    ],
-  },
+  { area: 'Languages', items: ['Python', 'SQL', 'Java', 'R'] },
+  { area: 'Data',      items: ['Snowflake', 'Looker', 'Hex', 'numpy'] },
+  { area: 'Tools',     items: ['OpenAI API', 'Claude Code', 'Git', 'Jira'] },
+  { area: 'Product',   items: ['User Research', 'A/B Testing', 'Roadmapping', 'Sprint Planning', 'Financial Modeling'] },
 ]
+
+export const INTERESTS = ['Skiing', 'Baking', 'Russian', 'Italian', 'Star Wars', 'Lord of the Rings']
