@@ -136,6 +136,7 @@ export const PROJECTS = [
     when: 'Aug 2025 to May 2026',
     stack: 'Personal project / React, Gmail API',
     href: 'https://github.com/chertokr/sales-mailer',
+    live: 'https://sales-mailer-mu.vercel.app/',
     summary: 'Templated pricing emails and send history tracking for sales reps.',
     problem: 'Reps drafted pricing emails by hand and tracked sends manually, so follow-ups slipped.',
     solution: 'Built a React app on the Gmail API with templates and send history as a first-class feature.',

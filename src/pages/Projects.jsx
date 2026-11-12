@@ -9,7 +9,7 @@ const DETAIL = [
 ]
 
 function Project({ project, open, onToggle }) {
-  const { title, when, summary, stack, href, tags } = project
+  const { title, when, summary, stack, href, live, tags } = project
   return (
     <article className="project">
       <button className="project-head" onClick={onToggle} aria-expanded={open}>
@@ -35,12 +35,19 @@ function Project({ project, open, onToggle }) {
             ))}
           </div>
           <Tags items={tags} />
-          {href && (
-            <p style={{ marginTop: 'var(--s-4)' }}>
-              <a className="link meta" href={href} target="_blank" rel="noreferrer">
-                View source on GitHub &rarr;
-              </a>
-            </p>
+          {(live || href) && (
+            <div className="project-links">
+              {live && (
+                <a href={live} target="_blank" rel="noreferrer">
+                  Open the live app &rarr;
+                </a>
+              )}
+              {href && (
+                <a href={href} target="_blank" rel="noreferrer">
+                  View source on GitHub &rarr;
+                </a>
+              )}
+            </div>
           )}
         </div>
       )}
