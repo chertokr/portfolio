@@ -155,7 +155,7 @@ export default function App() {
 
         <Card tone="blue" span={4} label="Resume">
           <p className="card-text" style={{ color: 'inherit' }}>
-            One page, kept current. The Google Doc is always the latest.
+            I keep the Google Doc version up to date, so it will always be more current than the PDF.
           </p>
           <div className="project-foot">
             <a className="btn btn--on-dark" href={CONFIG.resumeEmbedUrl} target="_blank" rel="noreferrer">Google Doc</a>

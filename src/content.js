@@ -3,7 +3,9 @@
 
 export const PROFILE = {
   name: 'Rachel Chertok',
-  blurb: 'CS and business at Northeastern. I work on data-heavy products and I pull the numbers myself.',
+  blurb:
+    'I study computer science and business at Northeastern and work on data-heavy products, ' +
+    'which usually means I am the one pulling the numbers.',
   availability: 'Open to full-time PM roles, June 2027',
   openTo: 'Boston, New York, Chicago, Texas, California, or remote',
 }
@@ -11,14 +13,17 @@ export const PROFILE = {
 export const HEADLINE = {
   value: '$300K',
   label: 'Biggest win',
-  note: 'One flavor, one rename, zero engineering cost. Found in the usage data at Bevi, shipped across software, marketing and sales in 2025.',
+  note:
+    'A flavor at Bevi was underperforming because of its name rather than its formula. ' +
+    'I found it in the usage data and coordinated a rename across software, marketing and sales, ' +
+    'which took no engineering work and which finance projected at $300K in new revenue.',
 }
 
 export const METRICS = [
-  { value: '2M+',  label: 'Analyzed', note: 'machine usage events', tone: 'blue' },
-  { value: '+30%', label: 'Lifted',   note: 'concentrate consumption', tone: 'green' },
-  { value: '95+',  label: 'Led',      note: 'React projects' },
-  { value: '60%',  label: 'Saved',    note: 'drafting time per rep' },
+  { value: '2M+',  label: 'At Bevi',       note: 'machine usage events analyzed in Snowflake and Looker', tone: 'blue' },
+  { value: '+30%', label: 'At Bevi',       note: 'lift in concentrate consumption across partner accounts', tone: 'green' },
+  { value: '95+',  label: 'At Oasis NEU',  note: 'React projects shipped by the club I ran' },
+  { value: '60%',  label: 'Sales Mailer',  note: 'less time spent drafting emails, per rep' },
 ]
 
 export const WORK = [
@@ -33,7 +38,7 @@ export const WORK = [
     ],
     stat: {
       value: 'Weeks to seconds',
-      note: 'time to pull current revenue, pipeline and competitive numbers',
+      note: 'Pulling current revenue, pipeline and competitive numbers used to take weeks of manual work.',
     },
     tags: ['Python', 'Jira API', 'A/B Testing'],
   },
@@ -55,7 +60,7 @@ export const PROJECTS = [
   {
     title: 'RHEL cloud executive dashboard',
     org: 'Red Hat, 2026',
-    summary: 'A live view of revenue, pipeline and competitive data.',
+    summary: 'The business unit can see its current revenue, pipeline and competitive data in one place instead of waiting on a manual pull.',
     problem: 'Decisions needed numbers that lived in separate places and got pulled by hand.',
     solution: 'Built a real-time dashboard in Python on the Google Sheets and Jira APIs, with A/B tested layouts.',
     impact: 'The team reviews current numbers in its regular meetings instead of assembling them.',
@@ -64,7 +69,7 @@ export const PROJECTS = [
   {
     title: 'Sales Mailer',
     org: 'Personal project, 2025',
-    summary: 'Templated pricing email with send history tracking.',
+    summary: 'Sales reps can send templated pricing emails and see at a glance who has already been contacted.',
     problem: 'Reps drafted pricing emails by hand and tracked sends manually, so follow-ups slipped.',
     solution: 'Built a React app on the Gmail API with templates and send history as a first-class feature.',
     impact: 'Cut drafting time roughly 60% per rep and removed duplicate outreach.',
@@ -77,7 +82,7 @@ export const PROJECTS = [
   {
     title: 'Flavor swaps and voting',
     org: 'Bevi, 2025',
-    summary: 'An SKU model piloted across 110 partner sites.',
+    summary: 'I built a model that recommends which beverage SKUs to swap out, and piloted it across 110 partner sites.',
     problem: 'Low-performing SKUs held machine slots and held down concentrate consumption.',
     solution: 'Built a Python model on Snowflake data to flag low performers and recommend swaps, piloted with a voting program.',
     impact: 'Boosted concentrate consumption 30% across strategic accounts.',
@@ -127,7 +132,7 @@ export const ORGS = [
     org: 'Chi Omega',
     role: 'Member',
     when: '2023 to now',
-    detail: 'Philanthropy and chapter programming.',
+    detail: 'I have been an active member since my first year, mostly through philanthropy events and chapter programming.',
   },
 ]
 
