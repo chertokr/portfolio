@@ -285,6 +285,19 @@ svg.spark[viewBox="0 0 64 64"] { width: 72px; }
 
 /* ---------- projects ---------- */
 
+.sticker--sm {
+  font-size: 12px;
+  padding: 6px 12px;
+  transform: rotate(-1.5deg);
+}
+.project:hover .sticker--sm { transform: rotate(1.5deg); }
+.project-stat {
+  font-size: 15px;
+  font-weight: 800;
+  border-bottom: 3px solid var(--yellow);
+  width: fit-content;
+}
+
 .project-detail {
   display: flex;
   flex-direction: column;

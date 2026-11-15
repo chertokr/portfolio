@@ -92,9 +92,10 @@ export default function App() {
 
         {/* ---------- projects ---------- */}
         <h2 className="row-head" id="projects">What I have built</h2>
-        <ProjectCard project={PROJECTS[0]} chart={<Clouds />} />
-        <ProjectCard project={PROJECTS[1]} chart={<Cut left={40} />} />
-        <ProjectCard project={PROJECTS[2]} chart={<Donut pct={30} />} />
+        <ProjectCard project={PROJECTS[0]} span={6} now stat="14+ specs written so far" />
+        <ProjectCard project={PROJECTS[1]} span={6} chart={<Clouds />} />
+        <ProjectCard project={PROJECTS[2]} span={6} chart={<Cut left={40} />} stat="60% less drafting time per rep" />
+        <ProjectCard project={PROJECTS[3]} span={6} chart={<Donut pct={30} />} />
 
         {/* ---------- school ---------- */}
         <h2 className="row-head" id="school">School</h2>
@@ -154,12 +155,8 @@ export default function App() {
         </Card>
 
         <Card tone="blue" span={4} label="Resume">
-          <p className="card-text" style={{ color: 'inherit' }}>
-            I keep the Google Doc version up to date, so it will always be more current than the PDF.
-          </p>
           <div className="project-foot">
-            <a className="btn btn--on-dark" href={CONFIG.resumeEmbedUrl} target="_blank" rel="noreferrer">Google Doc</a>
-            <a className="btn btn--on-dark" href="/resume.pdf" download>PDF</a>
+            <a className="btn btn--on-dark" href={CONFIG.resumeDownload}>Download resume</a>
           </div>
         </Card>
 

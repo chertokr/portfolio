@@ -4,8 +4,9 @@
 export const PROFILE = {
   name: 'Rachel Chertok',
   blurb:
-    'I study computer science and business at Northeastern and work on data-heavy products, ' +
-    'which usually means I am the one pulling the numbers.',
+    'I like being the person who sits between the engineers and the PMs and translates in both ' +
+    'directions. I use data to guide decisions, try to get everyone on the same page early, and ' +
+    'stick around from the first idea through launch.',
   availability: 'Open to full-time PM roles, June 2027',
   openTo: 'Boston, New York, Chicago, Texas, California, or remote',
 }
@@ -20,10 +21,10 @@ export const HEADLINE = {
 }
 
 export const METRICS = [
-  { value: '2M+',  label: 'At Bevi',       note: 'machine usage events analyzed in Snowflake and Looker', tone: 'blue' },
+  { value: '$1B',  label: 'At Red Hat',    note: 'revenue, pipeline and competitive data consolidated into one view', tone: 'blue' },
+  { value: '2M+',  label: 'At Bevi',       note: 'machine usage events analyzed in Snowflake and Looker' },
   { value: '+30%', label: 'At Bevi',       note: 'lift in concentrate consumption across partner accounts', tone: 'green' },
   { value: '95+',  label: 'At Oasis NEU',  note: 'React projects shipped by the club I ran' },
-  { value: '60%',  label: 'Sales Mailer',  note: 'less time spent drafting emails, per rep' },
 ]
 
 export const WORK = [
@@ -34,7 +35,8 @@ export const WORK = [
     place: 'RHEL Cloud Business Unit, Boston',
     bullets: [
       'Analyzed RHEL deployment performance across AWS, GCP, OCI, and Azure to inform roadmap decisions.',
-      'Built a real-time executive dashboard consolidating revenue, pipeline, and competitive data, cutting the time to get current numbers from weeks to seconds.',
+      'Built and iterated on a real-time executive dashboard (Python, Google Sheets API, Jira API) consolidating $1B of revenue, pipeline, and competitive data, cutting the time to get current numbers from weeks to seconds.',
+      'Ranked and prioritized dashboard features against stakeholder input and data relevance, so the highest-impact views got built first.',
     ],
     stat: {
       value: 'Weeks to seconds',
@@ -48,15 +50,25 @@ export const WORK = [
     when: 'Jul to Dec 2025',
     place: 'Software and beverage product, Boston',
     bullets: [
-      'Tracked unit and flavor performance with SQL segmentation in Snowflake and Looker.',
+      'Segmented 2M+ machine usage events in Snowflake and Looker to track unit performance and flavor trends, flagging underperforming SKUs before they became inventory risks.',
       'Ran standups and sprint planning for a zero-cost rebrand that drove a $300K revenue increase.',
       'Built an AI sales assistant on the OpenAI API recommending machines by office profile.',
+      'Wrote the product guides for Bevi, giving teams a reference to build and evaluate features against so new users and stakeholders could get up to speed without asking around.',
     ],
     tags: ['SQL', 'Snowflake', 'Looker', 'OpenAI API'],
   },
 ]
 
 export const PROJECTS = [
+  {
+    title: 'Adaptiv',
+    org: 'Product Manager, July 2026 to now',
+    summary: 'A training app for endurance and resistance athletes, which I own the product specification for.',
+    problem: 'A training app has to adapt to an athlete who misses a week, sleeps badly, or comes back from injury, and that logic has to be written down before anyone can build it.',
+    solution: 'I define the goal-adaptation logic, periodization rules, and a readiness governor system across 14+ specs, then direct AI coding agents against those specs.',
+    impact: 'I manage scope prioritization and legacy migration planning with the team, so the build order follows the spec rather than whatever is easiest to code next.',
+    tags: ['Product Spec', 'AI Agents', 'Roadmapping'],
+  },
   {
     title: 'RHEL cloud executive dashboard',
     org: 'Red Hat, 2026',
@@ -68,7 +80,7 @@ export const PROJECTS = [
   },
   {
     title: 'Sales Mailer',
-    org: 'Personal project, 2025',
+    org: 'Developer and product manager, Aug 2025 to May 2026',
     summary: 'Sales reps can send templated pricing emails and see at a glance who has already been contacted.',
     problem: 'Reps drafted pricing emails by hand and tracked sends manually, so follow-ups slipped.',
     solution: 'Built a React app on the Gmail API with templates and send history as a first-class feature.',
@@ -131,13 +143,13 @@ export const ORGS = [
   {
     org: 'Chi Omega',
     role: 'Member',
-    when: '2023 to now',
-    detail: 'I have been an active member since my first year, mostly through philanthropy events and chapter programming.',
+    when: '2024 to now',
+    detail: 'I have been an active member since 2024, mostly through philanthropy events and chapter programming.',
   },
 ]
 
 export const SKILLS = [
-  { area: 'Languages', items: ['Python', 'SQL', 'Java', 'R'] },
+  { area: 'Languages', items: ['Python', 'SQL', 'Java', 'JavaScript', 'R'] },
   { area: 'Data', items: ['Snowflake', 'Looker', 'Hex', 'numpy'] },
   { area: 'Tools', items: ['React', 'Git', 'Jira', 'OpenAI API', 'Claude Code'] },
   { area: 'Product', items: ['User Research', 'A/B Testing', 'Roadmapping', 'Sprint Planning', 'Financial Modeling'] },
