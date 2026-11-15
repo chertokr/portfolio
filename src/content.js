@@ -39,7 +39,7 @@ export const WORK = [
       'Ranked and prioritized dashboard features against stakeholder input and data relevance, so the highest-impact views got built first.',
     ],
     stat: {
-      value: 'Weeks to seconds',
+      value: 'Weeks \u2192 seconds',
       note: 'Pulling current revenue, pipeline and competitive numbers used to take weeks of manual work.',
     },
     tags: ['Python', 'Jira API', 'A/B Testing'],

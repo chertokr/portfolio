@@ -82,7 +82,6 @@ export default function App() {
             {w.stat && (
               <div className="stat">
                 <p className="stat-value">{w.stat.value}</p>
-                <Cut left={2} />
                 <p className="card-meta">{w.stat.note}</p>
               </div>
             )}
